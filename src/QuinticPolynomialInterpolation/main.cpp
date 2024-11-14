@@ -48,7 +48,7 @@ int main() {
     // 离散化时间
     double dt = 0.05;
     std::vector<State> path;
-
+    std::vector<double> x_;
     for (double t = t0; t <= t1; t += dt) {
         Eigen::VectorXd T_poly(6);
         T_poly << std::pow(t, 5), std::pow(t, 4), std::pow(t, 3), std::pow(t, 2), t, 1;
@@ -63,18 +63,15 @@ int main() {
         state.vy = T_poly_deriv.dot(B);        // 横向速度
 
         path.push_back(state);
+        x_.push_back(t);
     }
 
     std::vector<double> velocity_;
-    std::vector<double> x_;
     // 打印路径数据
     for (const auto& p : path) {
         std::cout << "x: " << p.x << ", y: " << p.y << ", vx: " << p.vx << ", vy: " << p.vy << std::endl;
         velocity_.push_back(p.vx);
-        x_.push_back(p.x);
     }
-    cout << "速度容器数量 = " << velocity_.size() << endl;
-
     plt::figure_size(800, 600);
     plt::plot(x_, velocity_, "r-"); 
     plt::show();
