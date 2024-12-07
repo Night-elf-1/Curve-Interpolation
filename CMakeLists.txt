@@ -29,10 +29,13 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/bin)
 set(QuinticPolynomial 
     src/QuinticPolynomialInterpolation/main.cpp
 )
+set(CURVATUREBYTHREEPOINTS 
+    src/CurvatureByThreePoints/main.cpp
+)
 
 # 添加源码目录
 add_executable(quinticpolynomial_ ${QuinticPolynomial})
-# add_executable(mpc_speed_steel_ ${mpc_speed_steel})
+add_executable(curvaturebythreepoints ${CURVATUREBYTHREEPOINTS})
 
 # 链接依赖库
 target_link_libraries(quinticpolynomial_ 
